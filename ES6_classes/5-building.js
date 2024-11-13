@@ -1,10 +1,10 @@
-export default class Building {
+// 5-building.js
+class Building {
   constructor(sqft) {
-    if (typeof sqft === 'Number') {
-      this._sqft = sqft;
-    } else {
-      throw new TypeError('sqft must be a Number');
+    if (new.target === Building) {
+      throw new Error('Cannot instantiate an abstract class.');
     }
+    this._sqft = sqft;
   }
 
   get sqft() {
@@ -15,3 +15,5 @@ export default class Building {
     throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
+
+export default Building;
