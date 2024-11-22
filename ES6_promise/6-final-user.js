@@ -10,7 +10,7 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
   return results.map(result => ({
     status: result.status,
     value: result.status === 'fulfilled'
-      ? result.value
-      : result.reason.message
+      ? result.value // This will be the user object
+      : `Error: ${result.reason.message}` // This will be the error message
   }));
 }
