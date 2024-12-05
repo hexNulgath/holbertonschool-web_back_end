@@ -3,22 +3,22 @@
 This module provides a utility function for string concatenation.
 
 Functions:
-  - concat(str1: str, str2: str) -> str: Concatenates two strings and returns the result.
-""
-
-def concat(str1: str, str2: str) -> str:
+    - concat(str1: str, str2: str) -> str: Concatenates two strings and returns the result.
 """
 
-
 def concat(str1: str, str2: str) -> str:
-  """
-  Concatenates two strings and returns the result.
+    """
+    Concatenates two strings and returns the result.
 
-  Args:
-    str1 (str): The first string.
-    str2 (str): The second string.
+    Args:
+        str1 (str): The first string.
+        str2 (str): The second string.
 
-  Returns:
-    str: The concatenated string.
-  """
-  return str1 + str2
+    Returns:
+        str: The concatenated string.
+
+    Example:
+        >>> concat("Hello, ", "World!")
+        'Hello, World!'
+    """
+    return str1 + str2
