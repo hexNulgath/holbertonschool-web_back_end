@@ -3,8 +3,10 @@
 This module provides a utility function for string concatenation.
 
 Functions:
-    - concat(str1: str, str2: str) -> str: Concatenates two strings and returns the result.
+    - concat(str1: str, str2: str) -> str:
+    Concatenates two strings and returns the result.
 """
+
 
 def concat(str1: str, str2: str) -> str:
     """
