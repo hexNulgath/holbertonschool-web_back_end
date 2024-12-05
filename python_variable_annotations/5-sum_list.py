@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from typing import List
 """
 Function to sum a list of floats
 
@@ -9,6 +8,8 @@ Args:
 Returns:
     float: The sum of the input list
 """
+
+from typing import List
 
 
 def sum_list(input_list: List[float]) -> float:
