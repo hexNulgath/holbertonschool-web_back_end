@@ -2,8 +2,8 @@
 """
 This module provides a utility function for arithmetic operations.
 
-The `sum` function calculates the sum of two floating-point numbers and 
-returns the result. This module is intended for use in basic mathematical 
+The `sum` function calculates the sum of two floating-point numbers and
+returns the result. This module is intended for use in basic mathematical
 operations requiring addition.
 
 Functions:
