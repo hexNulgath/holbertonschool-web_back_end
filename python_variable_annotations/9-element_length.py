@@ -2,7 +2,8 @@
 """
 This module provides a function to get the length of each element in a list.
 
-The `element_length` function takes an iterable of sequences as input and returns a list of tuples,
+The `element_length` function takes an iterable of sequences as input and
+returns a list of tuples,
 each containing a sequence and its length.
 
 Example:
