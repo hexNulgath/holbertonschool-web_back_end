@@ -56,7 +56,7 @@ class Server:
                 If the page is out of range, returns an empty list.
                 Raises:
                     AssertionError: If page or page_size are not integers or
-                    if pageis negative or page_size is 0.
+                    if page is negative or page_size is 0.
         """
         assert isinstance(page, int)
         assert isinstance(page_size, int)
