@@ -1,12 +1,30 @@
 #!/usr/bin/env python3
-
+"""
+Helper function to calculate the start and end index for pagination.
+"""
 import csv
 import math
-from typing import List
+from typing import List, Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """
+    Calculate the start and end index for a paginated dataset.
+    Args:
+        page (int): The current page number (1-indexed). Defaults to 1.
+        page_size (int): The number of items per page. Defaults to 10.
+    Returns:
+        Tuple[int, int]: A tuple containing the start index (inclusive) and
+        end index (exclusive) for the items in the current page.
+    """
+    start = (page - 1) * page_size
+    end = page * page_size
+    return start, end
 
 
 class Server:
-    """Server class to paginate a database of popular baby names.
+    """
+    Server class to paginate a database of popular baby names.
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
@@ -14,7 +32,8 @@ class Server:
         self.__dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
+        """
+        Cached dataset
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
@@ -25,4 +44,11 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            pass
+        assert isinstance(page, int)
+        assert isinstance(page_size, int)
+        assert page > 0 and page_size > 0
+        start, end = index_range(page, page_size)
+        dataset = self.dataset()
+        if start >= len(dataset):
+            return []
+        return dataset[start:end]
