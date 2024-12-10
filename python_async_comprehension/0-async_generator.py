@@ -16,9 +16,10 @@ float: A random floating-point number between 1 and 10.#+
 """
 import asyncio
 import random
+from typing import List
 
 
-async def async_generator():
+async def async_generator() -> List[float]:
     """Generates random numbers"""
     for _ in range(10):
         await asyncio.sleep(1)
