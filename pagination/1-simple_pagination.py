@@ -47,13 +47,16 @@ class Server:
         """
         Get a paginated dataset.
         Args:
-            page (int, optional): The current page number (1-indexed). Defaults to 1.
-            page_size (int, optional): The number of items per page. Defaults to 10.
+            page (int, optional): The current page number (1-indexed).
+            Defaults to 1.
+            page_size (int, optional): The number of items per page.
+            Defaults to 10.
             Returns:
                 List[List]: A list of items in the current page.
                 If the page is out of range, returns an empty list.
                 Raises:
-                    AssertionError: If page or page_size are not integers or if page is negative or page_size is 0.
+                    AssertionError: If page or page_size are not integers or
+                    if pageis negative or page_size is 0.
         """
         assert isinstance(page, int)
         assert isinstance(page_size, int)
