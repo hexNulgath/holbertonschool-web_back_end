@@ -68,6 +68,8 @@ class Server:
                     AssertionError: If page or page_size are not integers or
                     if page is negative or page_size is 0.
         """
+        assert isinstance(page, int) and isinstance(page_size, int)
+        assert page > 0 and page_size > 0
         start, end = index_range(page, page_size)
         dataset = self.dataset()
         if page < math.ceil(len(dataset) / page_size):
@@ -85,7 +87,7 @@ class Server:
         Returns a dictionary of hyperlinks to the given page
         and page size in the given page
         """
-        data, next_page, prev_page, total_page = self.get_page(page, page_size)
+        data, next_page, prev_page, total_page = self.get_page(int(page), int(page_size))
         return {'page_size': len(data), 'page': int(page), 'data': data,
                 'prev_page': prev_page, 'next_page': next_page,
                 'total_page': total_page}
