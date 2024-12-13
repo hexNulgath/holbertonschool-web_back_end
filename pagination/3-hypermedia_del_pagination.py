@@ -40,6 +40,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """does not miss items from dataset when changing page"""
         dataset = self.indexed_dataset()
         dataset_size = len(dataset)
         assert index <= dataset_size
