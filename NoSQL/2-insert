@@ -1,4 +1,7 @@
-// inserts a document in the collection school
-db.school.insertOne({
+// Insert the document and simulate the output
+const result = db.school.insertOne({
   name: "Holberton school"
 });
+
+// Mimic the legacy mongo shell output format
+printjson({ "nInserted": result.insertedCount });
