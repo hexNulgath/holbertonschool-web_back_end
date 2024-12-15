@@ -22,4 +22,4 @@ def schools_by_topic(mongo_collection, topic):
     if not isinstance(topic, str):
         raise ValueError("topic must be a string")
     query = {"topics": topic}
-    return [school["name"] for school in mongo_collection.find(query)]
+    return list(mongo_collection.find(query))
