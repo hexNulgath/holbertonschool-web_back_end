@@ -4,4 +4,4 @@ const result = db.school.insertOne({
 });
 
 // Mimic the legacy mongo shell output format
-printjson({ "nInserted": result.acknowledged ? 1 : 0 });
+printjson(WriteResult({ "nInserted": result.acknowledged ? 1 : 0 }));
