@@ -4,7 +4,7 @@
 """
 
 
-def get_schools_by_topic(mongo_collection, topic):
+def schools_by_topic(mongo_collection, topic):
     """
     Returns the list of school having a specific topic.
 
