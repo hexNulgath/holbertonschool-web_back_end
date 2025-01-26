@@ -11,5 +11,6 @@ userInput.question('Welcome to Holberton School, what is your name?\n', (name) =
 });
 
 userInput.on('close', () => {
- // Removed close event logging
+  console.log('This important software is now closing');
+  process.exit();
 });
