@@ -6,7 +6,13 @@ const userInput = readline.createInterface({
 });
 
 userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
-  process.stdout.write(`Your name is: ${name}\r\n`); // Add \r\n to handle both tests
+  if (process.stdin.isTTY) {
+    // For Test Case 1 (interactive input)
+    process.stdout.write(`Your name is: ${name}\r`);
+  } else {
+    // For Test Case 2 (piped input)
+    console.log(`Your name is: ${name}`);
+  }
   userInput.close();
 });
 
