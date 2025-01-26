@@ -11,9 +11,9 @@ class StudentsController {
         let response = 'This is the list of our students\n';
 
         // Sort the fields alphabetically (case-insensitive)
-        const sortedFields = Object.keys(fields).sort((a, b) => {
-          a.toLowerCase().localeCompare(b.toLowerCase());
-        });
+        const sortedFields = Object.keys(fields).sort((a, b) => 
+          a.toLowerCase().localeCompare(b.toLowerCase())
+        );
 
         // Add each field's details to the response
         sortedFields.forEach((field) => {
@@ -33,7 +33,7 @@ class StudentsController {
     const { major } = req.params; // Access major from the URL parameter
 
     // Check if the major is valid
-    if (major !== 'CS' && major !== 'SWE') {
+    if (major.toUpperCase() !== 'CS' && major.toUpperCase() !== 'SWE') {
       // If the major is not valid, return a 500 error with the appropriate message
       return res.status(500).send('Major parameter must be CS or SWE');
     }
@@ -42,7 +42,7 @@ class StudentsController {
     readDatabase(db)
       .then((fields) => {
         // Find students with the specified major field
-        const studentsInMajor = fields[major];
+        const studentsInMajor = fields[major.toUpperCase()];
 
         // Check if the major field exists and has students
         if (!studentsInMajor) {

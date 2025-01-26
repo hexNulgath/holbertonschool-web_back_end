@@ -17,7 +17,7 @@ function readDatabase(filePath) {
 
       // Iterate over each row (skipping the header)
       rows.forEach((row, index) => {
-        if (index === 0) return; // Skip header line
+        if (index === 0 || !row.trim()) return; // Skip header line and empty lines
 
         // Split the row by commas to get individual columns (firstname, lastname, age, field)
         const columns = row.split(',');
