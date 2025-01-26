@@ -1,6 +1,5 @@
 const { readDatabase } = require('../utils');
 
-
 class StudentsController {
   // Static method to get all students
   static getAllStudents(req, res) {
