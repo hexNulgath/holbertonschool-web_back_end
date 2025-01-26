@@ -11,5 +11,5 @@ userInput.question('Welcome to Holberton School, what is your name?\n', (name) =
 });
 
 userInput.on('close', () => {
-  process.stdout.write('\nThis important software is now closing');
+  process.stdout.write('\nThis important software is now closing\n');
 });
