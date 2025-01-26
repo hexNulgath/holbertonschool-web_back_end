@@ -1,6 +1,4 @@
 const fs = require('fs');
-const path = require('path');
-const csv = require('csv-parser');
 
 // Function to read the CSV database and return student first names grouped by fields
 function readDatabase(filePath) {
@@ -8,27 +6,42 @@ function readDatabase(filePath) {
     const fields = {};
 
     // Read the CSV file asynchronously
-    fs.createReadStream(filePath)
-      .pipe(csv())
-      .on('data', (row) => {
-        const { firstname, field } = row;
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        // Reject the promise if the file can't be read
+        return reject(err);
+      }
 
-        // Group the first names by field
-        if (field && firstname) {
-          if (!fields[field]) {
-            fields[field] = [];
+      // Split the file content by new lines to get each row
+      const rows = data.split('\n');
+
+      // Iterate over each row (skipping the header)
+      rows.forEach((row, index) => {
+        if (index === 0) return; // Skip header line
+
+        // Split the row by commas to get individual columns (firstname, lastname, age, field)
+        const columns = row.split(',');
+
+        // Ensure there are at least four columns (firstname, lastname, age, field)
+        if (columns.length >= 4) {
+          const firstname = columns[0].trim();
+          const lastname = columns[1].trim();
+          const age = columns[2].trim();
+          const field = columns[3].trim();
+
+          // Group the first names by field
+          if (field && firstname) {
+            if (!fields[field]) {
+              fields[field] = [];
+            }
+            fields[field].push(firstname);
           }
-          fields[field].push(firstname);
         }
-      })
-      .on('end', () => {
-        // After reading the CSV, resolve the promise with the fields object
-        resolve(fields);
-      })
-      .on('error', (err) => {
-        // Reject the promise if an error occurs while reading the file
-        reject(err);
       });
+
+      // Resolve the promise with the grouped fields
+      resolve(fields);
+    });
   });
 }
 
