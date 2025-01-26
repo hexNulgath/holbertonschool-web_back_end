@@ -1,13 +1,13 @@
 const { readDatabase } = require('../utils');
 const path = require('path');
 
-const dtaPath = process.argv[2];
-console.log(dtaPath);
-const db = path.basename(dtaPath);
-console.log(db);
+
+
 class StudentsController {
   // Static method to get all students
   static getAllStudents(req, res) {
+    const db = process.argv[2];
+    console.log(`Reading database from: ${db}`);
     // Call the readDatabase function to get the list of students
     readDatabase(db)
       .then((fields) => {
@@ -32,12 +32,13 @@ class StudentsController {
   }
 
   static getAllStudentsByMajor(req, res) {
+    const db = process.argv[2];
     const { major } = req.params; // Access major from the URL parameter
 
     // Check if the major is valid
-    if (major.toUpperCase() !== 'CS' && major.toUpperCase() !== 'SWE') {
-      // If the major is not valid, return a 500 error with the appropriate message
-      return res.status(500).send('Major parameter must be CS or SWE');
+    if (!['CS', 'SWE'].includes(major.toUpperCase())) {
+      // If the major is not valid, return a 400 error with the appropriate message
+      return res.status(400).send('Major parameter must be CS or SWE');
     }
 
     // Call the readDatabase function to get the list of students
