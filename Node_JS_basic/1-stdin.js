@@ -6,7 +6,7 @@ const userInput = readline.createInterface({
 });
 
 userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
-  process.stdout.write(`Your name is: ${name}\r`); // Use \r to satisfy the test
+  process.stdout.write(`Your name is: ${name}\r\n`); // Add \r\n to handle both tests
   userInput.close();
 });
 
