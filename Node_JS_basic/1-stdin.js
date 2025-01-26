@@ -1,14 +1,15 @@
 const readline = require('readline');
 
 const userInput = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
+ input: process.stdin,
+ output: process.stdout,
 });
 
 userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
-  console.log(`Your name is: ${name}\r`);
-  userInput.close();
+ console.log(`Your name is: ${name}\r\n`);
+ userInput.close();
 });
 
 userInput.on('close', () => {
+ // Removed close event logging
 });
