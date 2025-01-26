@@ -1,24 +1,15 @@
-const { once } = require('node:events');
-const { createReadStream } = require('node:fs');
-const { createInterface } = require('node:readline');
+const readline = require('readline');
 
-(async function processLineByLine() {
-  try {
-    const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
+const userInput = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-    console.log('Welcome to Holberton School, what is your name?');
-    rl.on('line', (line) => {
-      process.stdout.write(`Your name is: ${line}\r`);
+userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
+  process.stdout.write(`Your name is: ${name}\r`);
+  userInput.close();
+});
 
-    });
-
-    await once(rl, 'close');
-
-    console.log('\nThis important software is now closing');
-  } catch (err) {
-    console.error(err);
-  }
-})();
+userInput.on('close', () => {
+  process.stdout.write('\nThis important software is now closing');
+});
