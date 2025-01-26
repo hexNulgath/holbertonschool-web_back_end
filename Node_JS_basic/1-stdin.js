@@ -1,15 +1,24 @@
 const readline = require('readline');
 
-const userInput = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const askQuestion = (query) => {
+  const userInput = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
-userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
-  process.stdout.write(`Your name is: ${name}`);
-  userInput.close();
-});
+  return new Promise((resolve) => {
+    userInput.question(query, (answer) => {
+      resolve(answer);
+      userInput.close();
+    });
+  });
+};
 
-userInput.on('close', () => {
-  process.stdout.write('This important software is now closing');
-});
+const main = async () => {
+  console.log('Welcome to Holberton School, what is your name?');
+  const name = await askQuestion('');
+  console.log(`Your name is: ${name}`);
+  console.log('This important software is now closing');
+};
+
+main();
