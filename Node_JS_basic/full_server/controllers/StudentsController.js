@@ -1,6 +1,4 @@
 const { readDatabase } = require('../utils');
-const path = require('path');
-
 
 
 class StudentsController {
