@@ -1,10 +1,11 @@
 const { readDatabase } = require('../utils');
 
+const db = "database.csv";
 class StudentsController {
   // Static method to get all students
   static getAllStudents(req, res) {
     // Call the readDatabase function to get the list of students
-    readDatabase('database.csv')
+    readDatabase(db)
       .then(fields => {
         // Start the response
         let response = 'This is the list of our students\n';
@@ -36,7 +37,7 @@ class StudentsController {
     }
 
     // Call the readDatabase function to get the list of students
-    readDatabase('database.csv')
+    readDatabase(db)
       .then(fields => {
         // Find students with the specified major field
         const studentsInMajor = fields[major];
