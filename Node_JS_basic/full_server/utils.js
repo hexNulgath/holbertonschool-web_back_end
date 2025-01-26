@@ -25,8 +25,6 @@ function readDatabase(filePath) {
         // Ensure there are at least four columns (firstname, lastname, age, field)
         if (columns.length >= 4) {
           const firstname = columns[0].trim();
-          const lastname = columns[1].trim();
-          const age = columns[2].trim();
           const field = columns[3].trim();
 
           // Group the first names by field

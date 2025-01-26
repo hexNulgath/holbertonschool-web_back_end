@@ -1,27 +1,29 @@
 const { readDatabase } = require('../utils');
 
-const db = "database.csv";
+const db = 'database.csv';
 class StudentsController {
   // Static method to get all students
   static getAllStudents(req, res) {
     // Call the readDatabase function to get the list of students
     readDatabase(db)
-      .then(fields => {
+      .then((fields) => {
         // Start the response
         let response = 'This is the list of our students\n';
 
         // Sort the fields alphabetically (case-insensitive)
-        const sortedFields = Object.keys(fields).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+        const sortedFields = Object.keys(fields).sort((a, b) => {
+          a.toLowerCase().localeCompare(b.toLowerCase());
+        });
 
         // Add each field's details to the response
-        sortedFields.forEach(field => {
+        sortedFields.forEach((field) => {
           response += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
         });
 
         // Send the response with a 200 status
         res.status(200).send(response);
       })
-      .catch(error => {
+      .catch(() => {
         // If the database cannot be loaded, return a 500 error
         res.status(500).send('Cannot load the database');
       });
@@ -38,7 +40,7 @@ class StudentsController {
 
     // Call the readDatabase function to get the list of students
     readDatabase(db)
-      .then(fields => {
+      .then((fields) => {
         // Find students with the specified major field
         const studentsInMajor = fields[major];
 
@@ -50,7 +52,7 @@ class StudentsController {
         // Send the response with the list of first names
         res.status(200).send(`List: ${studentsInMajor.join(', ')}`);
       })
-      .catch(error => {
+      .catch(() => {
         // If the database cannot be loaded, return a 500 error
         res.status(500).send('Cannot load the database');
       });
