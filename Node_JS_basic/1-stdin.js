@@ -6,7 +6,7 @@ const userInput = readline.createInterface({
 });
 
 userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
-  console.log(`Your name is: ${name}\n`);
+  console.log(`Your name is: ${name}\r`);
   userInput.close();
 });
 
