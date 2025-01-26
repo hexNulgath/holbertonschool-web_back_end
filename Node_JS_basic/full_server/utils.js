@@ -1,39 +1,34 @@
 const fs = require('fs');
 const path = require('path');
+const csv = require('csv-parser');
 
-// Function to read the database and return student first names grouped by fields
+// Function to read the CSV database and return student first names grouped by fields
 function readDatabase(filePath) {
   return new Promise((resolve, reject) => {
-    // Check if the file exists first
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        // Reject the promise if there's an error reading the file
-        return reject(err);
-      }
+    const fields = {};
 
-      try {
-        // Parse the file content assuming it's JSON
-        const students = JSON.parse(data);
+    // Read the CSV file asynchronously
+    fs.createReadStream(filePath)
+      .pipe(csv())
+      .on('data', (row) => {
+        const { firstname, field } = row;
 
-        // Create an object to store arrays of first names per field
-        const fields = {};
-
-        // Iterate over the students and group first names by field
-        students.forEach(student => {
-          const { firstname, field } = student;
+        // Group the first names by field
+        if (field && firstname) {
           if (!fields[field]) {
             fields[field] = [];
           }
           fields[field].push(firstname);
-        });
-
-        // Resolve the promise with the object of arrays of first names per field
+        }
+      })
+      .on('end', () => {
+        // After reading the CSV, resolve the promise with the fields object
         resolve(fields);
-      } catch (parseError) {
-        // Reject the promise if JSON parsing fails
-        reject(new Error('Error parsing the student data.'));
-      }
-    });
+      })
+      .on('error', (err) => {
+        // Reject the promise if an error occurs while reading the file
+        reject(err);
+      });
   });
 }
 

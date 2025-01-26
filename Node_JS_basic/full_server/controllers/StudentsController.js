@@ -4,7 +4,7 @@ class StudentsController {
   // Static method to get all students
   static getAllStudents(req, res) {
     // Call the readDatabase function to get the list of students
-    readDatabase('path/to/database.json')
+    readDatabase('database.csv')
       .then(fields => {
         // Start the response
         let response = 'This is the list of our students\n';
@@ -26,9 +26,8 @@ class StudentsController {
       });
   }
 
-  // Static method to get students by major
   static getAllStudentsByMajor(req, res) {
-    const { major } = req.query;
+    const { major } = req.params; // Access major from the URL parameter
 
     // Check if the major is valid
     if (major !== 'CS' && major !== 'SWE') {
@@ -37,7 +36,7 @@ class StudentsController {
     }
 
     // Call the readDatabase function to get the list of students
-    readDatabase('path/to/database.json')
+    readDatabase('database.csv')
       .then(fields => {
         // Find students with the specified major field
         const studentsInMajor = fields[major];
