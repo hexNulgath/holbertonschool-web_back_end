@@ -1,6 +1,10 @@
 const { readDatabase } = require('../utils');
+const path = require('path');
 
-const db = process.argv[2];;
+const dtaPath = process.argv[2];
+console.log(dtaPath);
+const db = path.basename(dtaPath);
+console.log(db);
 class StudentsController {
   // Static method to get all students
   static getAllStudents(req, res) {
