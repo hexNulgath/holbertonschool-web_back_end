@@ -37,8 +37,8 @@ class StudentsController {
 
     // Check if the major is valid
     if (!['CS', 'SWE'].includes(major.toUpperCase())) {
-      // If the major is not valid, return a 400 error with the appropriate message
-      return res.status(400).send('Major parameter must be CS or SWE');
+      // If the major is not valid, return a 500 error with the appropriate message
+      return res.status(500).send('Major parameter must be CS or SWE');
     }
 
     // Call the readDatabase function to get the list of students
