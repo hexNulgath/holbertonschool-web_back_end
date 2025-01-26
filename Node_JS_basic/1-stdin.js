@@ -7,7 +7,7 @@ const userInput = readline.createInterface({
 
 userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
   process.stdout.write(`Your name is: ${name}\r`);
-  console.log(`Your name is: ${name}`)
+  console.log();
   userInput.close();
 });
 
