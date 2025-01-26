@@ -39,7 +39,7 @@ class StudentsController {
     }
 
     // Call the readDatabase function to get the list of students
-    readDatabase(db)
+    return readDatabase(db)
       .then((fields) => {
         // Find students with the specified major field
         const studentsInMajor = fields[major.toUpperCase()];
@@ -50,12 +50,9 @@ class StudentsController {
         }
 
         // Send the response with the list of first names
-        res.status(200).send(`List: ${studentsInMajor.join(', ')}`);
+        return res.status(200).send(`List: ${studentsInMajor.join(', ')}`);
       })
-      .catch(() => {
-        // If the database cannot be loaded, return a 500 error
-        res.status(500).send('Cannot load the database');
-      });
+      .catch(() => res.status(500).send('Cannot load the database'));
   }
 }
 

@@ -9,7 +9,8 @@ function readDatabase(filePath) {
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         // Reject the promise if the file can't be read
-        return reject(err);
+        reject(err);
+        return; // Explicit return to satisfy consistent-return
       }
 
       // Split the file content by new lines to get each row
@@ -17,7 +18,9 @@ function readDatabase(filePath) {
 
       // Iterate over each row (skipping the header)
       rows.forEach((row, index) => {
-        if (index === 0 || !row.trim()) return; // Skip header line and empty lines
+        if (index === 0 || !row.trim()) {
+          return; // Explicit return to satisfy consistent-return
+        }
 
         // Split the row by commas to get individual columns (firstname, lastname, age, field)
         const columns = row.split(',');
