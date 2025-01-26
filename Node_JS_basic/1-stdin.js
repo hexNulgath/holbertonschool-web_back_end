@@ -6,11 +6,11 @@ const userInput = readline.createInterface({
 });
 
 userInput.question('Welcome to Holberton School, what is your name?\n', (name) => {
-  process.stdout.write(`Your name is: ${name}\r`); 
+  process.stdout.write(`Your name is: ${name}\n`); 
   userInput.close();
 });
 
 userInput.on('close', () => {
-  console.log('\nThis important software is now closing');
+  console.log('This important software is now closing');
   process.exit();
 });
