@@ -10,10 +10,8 @@ class StudentsController {
         // Start the response
         let response = 'This is the list of our students\n';
 
-        // Sort the fields alphabetically (case-insensitive)
-        const sortedFields = Object.keys(fields).sort((a, b) => 
-          a.toLowerCase().localeCompare(b.toLowerCase())
-        );
+        // Sort the fields alphabetically
+        const sortedFields = Object.keys(fields).sort();
 
         // Add each field's details to the response
         sortedFields.forEach((field) => {
