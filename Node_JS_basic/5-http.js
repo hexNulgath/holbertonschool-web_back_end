@@ -35,8 +35,8 @@ const countStudents = async (filename) => {
     }
     return output;
   } catch (err) {
-    console.error('Error reading the file:', err);
-    return 'Error reading the file.';
+    console.error('Cannot load the database', err);
+    return 'Cannot load the database';
   }
 };
 
