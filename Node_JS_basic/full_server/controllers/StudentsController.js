@@ -1,6 +1,6 @@
 const { readDatabase } = require('../utils');
 
-const db = 'database.csv';
+const db = process.argv[2];;
 class StudentsController {
   // Static method to get all students
   static getAllStudents(req, res) {
